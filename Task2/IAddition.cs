@@ -8,6 +8,6 @@ namespace Task2
 {
     public interface IAddition
     {
-        public double AddNumbers(double a, double b);
+        public double AddNumbers(string[] numbers);
     }
 }

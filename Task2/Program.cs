@@ -9,27 +9,18 @@ namespace Task2
         {
             try
             {
-                double[] numbers = new double[2];
+                string[] numbers = new string[2];
 
                 Console.WriteLine("Введите два числа");
 
                 for (int i = 0; i < 2; i++)
                 {
-                    string Str = Console.ReadLine();
-
-                    if (Double.TryParse(Str, out numbers[i]))
-                    {
-                        numbers[i] = Double.Parse(Str);
-                    }
-                    else
-                    {
-                        throw new ArgumentException($"Введенное значение {Str} не является числом");
-                    }
+                    numbers[i] = Console.ReadLine();
                 }
 
                 Logger = new Logger();
                 Calculator calculator = new Calculator(Logger);
-                double summ = ((IAddition)calculator).AddNumbers(numbers[0], numbers[1]);
+                double summ = ((IAddition)calculator).AddNumbers(numbers);
 
                 string result = string.Format("{0:f4}", summ);
                 Console.WriteLine($"Сумма равна: {result}");

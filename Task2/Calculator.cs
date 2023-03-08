@@ -14,10 +14,25 @@ namespace Task2
             Logger = logger;
         }
 
-        double IAddition.AddNumbers(double a, double b)
+        double IAddition.AddNumbers(string[] numbers)
         {
+            double[] doubleNumbers = new double[2];
+
+            for (int i = 0; i < 2; i++)
+            {
+                if (Double.TryParse(numbers[i], out doubleNumbers[i]))
+                {
+                    doubleNumbers[i] = Double.Parse(numbers[i]);
+                }
+                else
+                {
+                    Logger.Error("Калькулятор прервал свою работу из-за ошибки");
+                    throw new ArgumentException($"Введенное значение {numbers[i]} не является числом");
+                }
+            }
+
             Logger.Event("Калькулятор начал работу");
-            double sum = a + b;
+            double sum = doubleNumbers[0] + doubleNumbers[1];
             Logger.Event("Калькулятор окончил работу");
             return sum;
         }
